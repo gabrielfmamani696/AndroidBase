@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,7 +30,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AndroidBasicoTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
                     AllLayoutFstExample()
                 }
             }
@@ -39,8 +44,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingText(message: String = "Default message", fromText: String = "Default From", modifier: Modifier = Modifier) {
     Column(
-        verticalArrangement = Arrangement.Center,
-        modifier = modifier.padding(8.dp)
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = message,
@@ -61,7 +65,11 @@ fun GreetingText(message: String = "Default message", fromText: String = "Defaul
 
 @Composable
 fun AllLayoutFstExample(modifier: Modifier = Modifier) {
-    GreetingText("Happy Birthday M!", "From Gabriel, your Love <3")
+    GreetingText(
+        message = "Happy Birthday M!",
+        fromText = "From Gabriel, your Love <3",
+        modifier = modifier.padding(8.dp)
+    )
     
 }
 
