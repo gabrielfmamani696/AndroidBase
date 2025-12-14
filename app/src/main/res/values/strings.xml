@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Android Basico</string>
+    <string name="happy_birthday_text">Happy B-Day MarC!</string>
+    <string name="signature_text"><![CDATA[From Gabe <3]]></string>
 </resources>
