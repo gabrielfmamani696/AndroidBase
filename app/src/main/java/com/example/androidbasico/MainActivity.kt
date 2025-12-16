@@ -11,7 +11,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -19,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -42,7 +51,8 @@ class MainActivity : ComponentActivity() {
 //                    AllLayoutFstExample()
 //                    AnadirImagenLayout()
 //                    TaskManagerLayout()
-                    CuadranteComposeLayout()
+//                    CuadranteComposeLayout()
+                    PresentationCardLayout()
                 }
             }
         }
@@ -165,12 +175,106 @@ fun CuadranteComposeLayout(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun Cuadrante(title: String = "Default",
-              content: String = "Default",
-              color: Color = Color(0xFFEADDFF),
-              modifier: Modifier = Modifier
-)
-{
+fun PresentationCardLayout(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color(0xFFD2E8D4)),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        HeaderLayout(
+            modifier = Modifier.padding(bottom = 32.dp)
+        )
+        InfoLayout()
+    }
+}
+
+@Composable
+fun InfoLayout(modifier: Modifier = Modifier) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth() // La columna ocupa todo el ancho
+            .padding(16.dp) // Un poco de margen externo para que no toque los bordes
+    ) {
+        TextAndIconRow(
+            info = "+591 76725650"
+
+        )
+        TextAndIconRow(
+            info = "@usuario_social", // Ejemplo
+            icon = Icons.Filled.Person
+        )
+        TextAndIconRow(
+            info = "gabrielfmamanicatari@gmail.com",
+            icon = Icons.Filled.Email
+        )
+    }
+}
+
+@Composable
+fun HeaderLayout(
+    modifier: Modifier = Modifier,
+    nombre: String = "Gabriel",
+    titulo: String = "Informatico",
+) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(R.drawable.android_head_3d),
+            contentDescription = null,
+            modifier = Modifier
+                .height(120.dp) // Un tamaño fijo para que no sea gigante
+                .width(120.dp)
+        )
+        Text(
+            text = nombre,
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(8.dp)
+        )
+        Text(
+            text = titulo,
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Light,
+        )
+    }
+}
+@Composable
+fun TextAndIconRow(
+    modifier: Modifier = Modifier
+        .fillMaxWidth(),
+    info: String = "Def",
+    icon: ImageVector = Icons.Filled.Phone
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = Color(0xFF3ddc84),
+            modifier = Modifier.padding(8.dp)
+        )
+        Text(
+            text = info,
+            modifier = Modifier
+                .padding(8.dp)
+        )
+    }
+}
+@Composable
+fun Cuadrante(
+    title: String = "Default",
+    content: String = "Default",
+    color: Color = Color(0xFFEADDFF),
+    modifier: Modifier = Modifier
+) {
     Column (
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -253,6 +357,10 @@ fun Preview() {
 //        AnadirImagenLayout()
 //        ArticuloComposeLayout()
 //        TaskManagerLayout()
-        CuadranteComposeLayout()
+//        CuadranteComposeLayout()
+
+
+//        InfoLayout()
+        PresentationCardLayout()
     }
 }
