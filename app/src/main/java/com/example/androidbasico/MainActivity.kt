@@ -361,6 +361,9 @@ fun Preview() {
 
 
 //        InfoLayout()
+
+
+
         PresentationCardLayout()
     }
 }
